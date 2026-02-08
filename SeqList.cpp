@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include "SeqList.h"
 
-// 顺序表的初始化
+//顺序表的初始化
 void InitList(SeqList& L)
 {
 	L.data = (int*)malloc(InitSize * sizeof(int));
@@ -35,6 +35,7 @@ void IncreaseSize(SeqList& L, int len)
 	free(p);
 }
 
+
 //顺序表插入元素
 bool ListInsert(SeqList& L, int i, int e) // i为位序
 {
@@ -44,10 +45,11 @@ bool ListInsert(SeqList& L, int i, int e) // i为位序
 		return false;
 	for (int j = L.length; j >= i; j--)
 		L.data[j] = L.data[j - 1];// 原先的元素从后往前后移
-	L.data[i - 1] = e;// 数组下标等于位序-1
+	L.data[i - 1] = e;// 数组下标等于 位序-1
 	L.length++;
 	return true;
 }
+
 
 //顺序表删除元素
 bool ListDelete(SeqList& L, int i, int& e)
@@ -61,6 +63,7 @@ bool ListDelete(SeqList& L, int i, int& e)
 	return true;
 }
 
+
 // 按位查找
 bool GetElem(const SeqList& L, int i, int& e)
 {
@@ -71,13 +74,14 @@ bool GetElem(const SeqList& L, int i, int& e)
 }
 
 // 按值查找
-int LocateElem(SeqList& L, int e)
+int LocateElem(const SeqList& L, int e)
 {
-	for (int i = 0; i < L.length; i++)
-		if (L.data[i] == e)
-			return i + 1;
+	for (int i = 1; i <= L.length; i++)
+		if (L.data[i - 1] == e)
+			return i - 1;
 	return 0;
 }
+
 
 // 输出顺序表元素
 void PrintList(const SeqList& L)
@@ -94,8 +98,8 @@ void PrintList(const SeqList& L)
 		return;
 	}
 
-	for (int i = 0; i < L.length; i++)
-		std::cout << L.data[i] << std::endl;
+	for (int i = 1; i <= L.length; i++)
+		std::cout << L.data[i - 1] << std::endl;
 }
 
 // 输出顺序表长度

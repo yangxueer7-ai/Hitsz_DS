@@ -19,7 +19,7 @@ bool ListInsert(SeqList& L, int i, int e);
 bool ListDelete(SeqList& L, int i, int& e);
 
 bool GetElem(const SeqList& L, int i, int& e);
-int LocateElem(SeqList& L, int e);
+int LocateElem(const SeqList& L, int e);
 
 void PrintList(const SeqList& L);
 int Length(const SeqList& L);
