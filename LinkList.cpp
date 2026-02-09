@@ -166,18 +166,26 @@ LNode* LocateElem(const LinkList& L, int e)
 // 单链表的建立--头插法
 LinkList List_HeadInsert(LinkList& L)
 {
-	LNode* s;
+	LNode* s = NULL;// 防止野指针
 	int x;
+
 	L = (LinkList)malloc(sizeof(LNode));
+	if (L == NULL) 
+		return NULL;  
 	L->next = NULL;
-	scanf("%d", &x);
+	if (scanf_s("%d", &x) != 1)
+		return L; // 输入失败直接返回
 	while (x != 9999)
 	{
 		s = (LNode*)malloc(sizeof(LNode));
+		if (s == NULL) 
+			break;        // 防止 s 为 NULL
 		s->data = x;
 		s->next = L->next;
 		L->next = s;
-		scanf("%d", &x);
+
+		if (scanf_s("%d", &x) != 1)
+			break; // 输入失败退出
 	}
 	return L;
 }
@@ -187,18 +195,32 @@ LinkList List_TailInsert(LinkList& L)
 {
 	int x;
 	L = (LinkList)malloc(sizeof(LNode));
-	LNode* s, * r = L;// r为表尾指针,始终指向最后一个结点，每插入一个向后移动一位
-	scanf("%d", &x);
+	if (L == NULL)
+		return NULL;      // 防止 L 为 NULL
+	L->next = NULL;         
+
+	LNode* s = NULL;
+	LNode* r = L;      // r 始终指向表尾
+
+	if (scanf_s("%d", &x) != 1) return L; // 输入失败直接返回
+
 	while (x != 9999)
 	{
 		s = (LNode*)malloc(sizeof(LNode));
+		if (s == NULL)
+			break;       
+		// 防止 s 为 NULL
+
 		s->data = x;
+		s->next = NULL;              // 新结点 next 初始化
+
 		r->next = s;
 		r = s;
-		scanf("%d", &x);
+
+		if (scanf_s("%d", &x) != 1)//scanf_s的返回值不是1，代表输入值不合法EOF
+			break; // 输入失败退出（可选）
 	}
-	r->next = NULL;
-	return L;
+	return L; 
 }
 
 // ====================== 双链表 ======================
