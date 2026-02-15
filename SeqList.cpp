@@ -63,6 +63,52 @@ bool ListDelete(SeqList& L, int i, int& e)
 	return true;
 }
 
+// 顺序表删除特定元素时间复杂度为o(n)的新算法
+bool DeleteAllX(SeqList& L, int x)
+{
+	if (L.length == 0)
+		return false;
+
+	int i = 0, j = 0;
+
+	while (i < L.length)
+	{
+		if (L.data[i] != x)
+		{
+			L.data[j] = L.data[i];
+			j++;
+		}
+		
+		i++;
+	}
+
+	L.length = j;
+	return true;
+}
+
+// 顺序表删除特定元素后,尾段用0补齐
+bool DeleteAllXToZero(SeqList& L, int x)
+{
+	if (L.length == 0)
+		return false;
+	int oldLength = L.length;
+	int i = 0, j = 0;
+	while (i < L.length)
+	{
+		if (L.data[i] != x)
+		{
+			L.data[j] = L.data[i];
+			j++;
+		}
+		i++;
+	}
+
+	for (int k = j; k < oldLength; k++)
+		L.data[k] = 0;
+	L.length = j;
+	return true;
+}
+
 
 // 按位查找
 bool GetElem(const SeqList& L, int i, int& e)
