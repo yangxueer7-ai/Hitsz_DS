@@ -15,7 +15,7 @@ void InitStack_x(SqStack& S) {
 }
 
 // Ë³ÐòÕ»µÄÅÐ¿Õ
-bool StackEmpty_x(SqStack S) {
+bool StackEmpty_x(const SqStack& S) {
 	if (S.top == -1)
 		return true;
 	else
@@ -41,7 +41,7 @@ bool Pop_x(SqStack& S, int& x) {
 }
 
 // ¶ÁÈ¡Õ»¶¥ÔªËØ
-bool GetTop_x(SqStack S, int& x) {
+bool GetTop_x(const SqStack& S, int& x) {
 	if (S.top == -1)
 		return false;
 	x = S.data[S.top];
@@ -56,7 +56,7 @@ void InitStack_y(SqStack& S) {
 }
 
 // Ë³ÐòÕ»ÅÐ¿Õ
-bool StackEmpty_y(SqStack S) {
+bool StackEmpty_y(const SqStack& S) {
 	if (S.top == 0)
 		return true;
 	else
@@ -80,7 +80,7 @@ bool Pop_y(SqStack& S, int& x) {
 }
 
 // ¶ÁÈ¡Õ»¶¥ÔªËØ
-bool GetTop_y(SqStack S, int& x) {
+bool GetTop_y(const SqStack& S, int& x) {
 	if (S.top == 0)
 		return false;
 	x = S.data[S.top - 1];
@@ -111,11 +111,28 @@ bool Push(LiStack*& top, int x) {
 bool Pop(LiStack*& top, int& x) {
 	if (top == nullptr)
 		return false;
-	LinkNode* del = top;
+	
+	LiStack* del = top;
 	x = top->data;
 	top = top->next;
 	free(del);
 	return true;
 }
 
+// »ñÈ¡Õ»Á´¶¥ÔªËØ
+bool GetTop(LiStack* top, int& x) {
+	if (top == nullptr)
+		return false;
+	x = top->data;
+	return true;
+}
+
+// ´Ý»ÙÕ»Á´ ÊÍ·ÅÄÚ´æ
+void DestroyStack(LiStack*& top) {
+	while (top != nullptr) {
+		LiStack* del = top;
+		top = top->next;
+		free(del);
+	}
+}
 
