@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="Experiment 1-1.cpp" />
     <ClCompile Include="Experiment 1-2.cpp" />
+    <ClCompile Include="Experiment 1-3.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="SeqList.cpp" />
     <ClCompile Include="LinkList.cpp" />
