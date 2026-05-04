@@ -21,7 +21,7 @@ typedef struct Node {
 } Node;
 
 // 创建新的具有图书信息的结点
-Node* CreateNode(Book bookData) {
+Node* CreateNode(Book& bookData) {
     Node* p = (Node*)malloc(sizeof(Node));
     p->bookData = bookData;
     p->next = NULL;
