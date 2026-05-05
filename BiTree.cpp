@@ -163,7 +163,7 @@ typedef struct ThreadNode {
 ThreadNode* pre = NULL;
 
 // 线索二叉树 进行中序线索化时访问结点 q
-void visitInThread(ThreadNode* q) {
+void visitInThreadNode(ThreadNode* q) {
 	// q没有左孩子，建立前驱线索pre
 	if (q->lchild == NULL) {
 		q->lchild = pre;
@@ -186,7 +186,7 @@ void visitInThread(ThreadNode* q) {
 void InThread(ThreadBiTree T) {
 	if (T != NULL) {
 		InThread(T->lchild);
-		visitInThread(T);
+		visitInThreadNode(T);
 		InThread(T->rchild);
 	}
 }
@@ -204,4 +204,87 @@ void CreateInThread(ThreadBiTree T) {
 	}
 }
 
+// 线索二叉树 进行先序线索化时访问结点q
+void visitPreThreadNode(ThreadNode* q) {
+	if (q->lchild == NULL) {
+		q->lchild = pre;
+		q->ltag = 1;
+	}
+	else {
+		q->ltag = 0;
+	}
+
+	if (pre != NULL && pre->rchild == NULL) {
+		pre->rchild = q;
+		pre->rtag = 1;
+	}
+	
+	pre = q;
+}
+
+// 先序线索化
+void PreThread(ThreadBiTree T) {
+	if (T != NULL) {
+		visitPreThreadNode(T);
+
+		// 只有左子树是真正的孩子时，才递归线索化左子树
+		if (T->ltag == 0)
+			PreThread(T->lchild);
+
+		if (T->rtag == 0)
+			PreThread(T->rchild);
+	}
+}
+
+// 创建先序线索二叉树
+void CreatePreThread(ThreadBiTree T){
+	pre = NULL;
+	if (T != NULL) {
+		PreThread(T);
+		if (pre->rchild == NULL) {
+			pre->rtag = 1;
+			}
+		}
+}
+
+// 在后序线索化过程中访问结点 q，建立 q 的前驱线索，并为 pre 建立后继线索
+void visitPostThreadNode(ThreadBiTree q) {
+	if (q->lchild == NULL) {
+		q->lchild = pre;
+		q->ltag = 1;
+	}
+	else {
+		q->ltag = 0;
+	}
+
+	if (pre != NULL && pre->rchild == NULL) {
+		pre->rchild = q;
+		pre->rtag = 1;
+	}
+	else {
+		pre->rtag = 0;
+	}
+
+	pre = q;
+}
+
+// 按后序遍历顺序对二叉树T进行线索化
+void PostThread(ThreadBiTree T) {
+	if (T != NULL) {
+		PostThread(T->lchild);
+		PostThread(T->rchild);
+		visitPostThreadNode(T);
+	}
+}
+
+// 创建以T为根的后序线索二叉树
+void CreatePostThread(ThreadBiTree T) {
+	pre = NULL;
+	if (T != NULL) {
+		PostThread(T);
+		if (pre->rchild == NULL) {
+			pre->rtag = 1;
+		}
+	}
+}
 
