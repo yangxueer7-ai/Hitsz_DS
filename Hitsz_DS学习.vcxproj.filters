@@ -42,6 +42,15 @@
     <ClCompile Include="BiTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Experiment 2-1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Experiment 2-2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Experiment 2-3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SeqList.h">

@@ -18,6 +18,8 @@ void CreateBiTree(BiTree& T) {
 		T = NULL;
 	else {
 		T = (BiTNode*)malloc(sizeof(BiTNode));
+		if (T == NULL)
+			return;
 		T->data = x;
 		CreateBiTree(T->lchild);
 		CreateBiTree(T->rchild);
@@ -198,7 +200,7 @@ void CreateInThread(ThreadBiTree T) {
 		InThread(T);
 		// 处理最后一个结点 
 		// 如果最后一个结点没有右孩子，后继线索指向NULL，rtag置1
-		if (pre->rchild == NULL) {
+		if (pre != NULL && pre->rchild == NULL) {
 			pre->rtag = 1;
 		}
 	}
@@ -241,7 +243,7 @@ void CreatePreThread(ThreadBiTree T){
 	pre = NULL;
 	if (T != NULL) {
 		PreThread(T);
-		if (pre->rchild == NULL) {
+		if (pre != NULL &&pre->rchild == NULL) {
 			pre->rtag = 1;
 			}
 		}
@@ -257,12 +259,14 @@ void visitPostThreadNode(ThreadBiTree q) {
 		q->ltag = 0;
 	}
 
-	if (pre != NULL && pre->rchild == NULL) {
-		pre->rchild = q;
-		pre->rtag = 1;
-	}
-	else {
-		pre->rtag = 0;
+	if (pre != NULL) {
+		if (pre->rchild == NULL) {
+			pre->rchild = q;
+			pre->rtag = 1;
+		}
+		else {
+			pre->rtag = 0;
+		}
 	}
 
 	pre = q;
@@ -282,9 +286,52 @@ void CreatePostThread(ThreadBiTree T) {
 	pre = NULL;
 	if (T != NULL) {
 		PostThread(T);
-		if (pre->rchild == NULL) {
+		if (pre != NULL&& pre->rchild == NULL) {
 			pre->rtag = 1;
 		}
 	}
 }
 
+// 正向遍历 寻找中序线索二叉树的后继
+ThreadNode* FirstNode(ThreadNode* p) {
+	while (p->ltag == 0)
+		p = p->lchild;
+	return p; // 找到最左下结点 即第一个被中序遍历的结点
+}
+
+ThreadNode* NextNode(ThreadNode* p) {
+	if (p->rtag == 0) {
+		// 有右子树时，返回右子树第一个结点
+		return FirstNode(p->rchild);
+	}
+
+	else
+		return p->rchild;
+}
+
+void visit(ThreadNode* T) {
+	std::cout << T->data << " ";
+}
+
+// 中序线索二叉树的中序遍历
+void InOrderByThread(ThreadNode* T) {
+	for (ThreadNode* p = FirstNode(T); p != NULL; p = NextNode(p)) 
+		
+		visit(p);
+}
+
+// 逆向遍历 寻找中序线索二叉树的前驱
+ThreadNode* LastNode(ThreadNode* p) {
+	while (p->rtag == 0)
+		p = p->rchild;
+	return p;
+}
+
+ThreadNode* PreNode(ThreadNode* p) {
+	if (p->ltag == 0) {
+		return LastNode(p->lchild);
+	}// 有左子树时，返回左子树最后一个结点，即他的前驱
+	else {
+		return p->lchild; //否则，建立前驱线索并连接
+	}
+}
