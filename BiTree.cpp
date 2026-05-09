@@ -21,6 +21,9 @@ void CreateBiTree(BiTree& T) {
 		if (T == NULL)
 			return;
 		T->data = x;
+		T->lchild = NULL;
+		T->rchild = NULL;
+
 		CreateBiTree(T->lchild);
 		CreateBiTree(T->rchild);
 	}
@@ -292,6 +295,10 @@ void CreatePostThread(ThreadBiTree T) {
 	}
 }
 
+
+//============以下传入的 p 为根节点 ======================
+// FirstNode 最左下特殊点 LastNode 最右下特殊点
+//=======================================================
 // 正向遍历 寻找中序线索二叉树的后继
 ThreadNode* FirstNode(ThreadNode* p) {
 	while (p->ltag == 0)
@@ -320,18 +327,114 @@ void InOrderByThread(ThreadNode* T) {
 		visit(p);
 }
 
-// 逆向遍历 寻找中序线索二叉树的前驱
+// 逆向遍历 找到以p为根的子树中，最后一个被中序遍历的结点
 ThreadNode* LastNode(ThreadNode* p) {
 	while (p->rtag == 0)
 		p = p->rchild;
 	return p;
 }
 
+// 找到节点p的前驱结点
 ThreadNode* PreNode(ThreadNode* p) {
 	if (p->ltag == 0) {
 		return LastNode(p->lchild);
-	}// 有左子树时，返回左子树最后一个结点，即他的前驱
+	}// 有左子树时，返回左子树最后一个结点（左子树最右下），即为p的前驱
 	else {
 		return p->lchild; //否则，建立前驱线索并连接
 	}
+}
+
+// 对中序线索二叉树进行逆向遍历
+void ReverseInorder(ThreadNode* T) {
+	for (ThreadNode* p = LastNode(T); p != NULL; p = PreNode(p)) {
+		visit(p);
+	}
+}
+
+// 先序线索二叉树找后继
+ThreadNode* PreOrderNext(ThreadNode* p) {
+	// p有左孩子
+	if (p->ltag == 0)
+		return p->lchild;
+	// p无左孩子 无论有无右孩子，都返回右孩子（可能是线索，也可能是真正的右孩子）
+	else {
+		return p->rchild;
+	}
+}
+
+// 定义一个存有父节点的三叉链表的线索二叉树
+typedef struct ThreadNode_T {
+	int data;
+	struct ThreadNode_T* lchild;
+	struct ThreadNode_T* rchild;
+	struct ThreadNode_T* parent; //父结点指针
+	int ltag, rtag;
+} TreeNode_T, * BiTree_T;
+
+ThreadNode_T* LastNode(ThreadNode_T* p) {
+	while (p->rtag == 0)
+		p = p->rchild;
+	return p;
+}
+
+
+// 先序线索二叉树找前驱
+ThreadNode_T* PreOrderPre(ThreadNode_T* p) {
+	ThreadNode_T* parent = p->parent;
+	if (parent == NULL)
+		return NULL;
+	// p无左孩子 直接返回线索
+	if (p->ltag == 1)
+		return p->lchild;
+	// p有左孩子
+	else {
+		// p是父节点左孩子
+		if (p == parent->lchild)
+			return parent;
+		// p是父节点右孩子，且父节点没有左孩子
+		else if (p == parent->rchild && parent->ltag == 1)
+			return parent;
+		//p是父节点右孩子，父节点也有左孩子
+		else if (p == parent->rchild && parent->ltag == 0) {
+			return LastNode(parent->lchild);
+		}
+	}
+
+	return NULL;
+}
+
+// 后序线索二叉树找前驱
+ThreadNode* PostOrderPre(ThreadNode* p) {
+	// p有右孩子，直接返回右孩子
+	if (p->rtag == 0)
+		return p->rchild;
+	// p无右孩子，有左孩子，返回左孩子
+	if (p->rtag == 1 && p->ltag == 0)
+		return p->lchild;
+	// p无右孩子无左孩子，返回线索
+	else
+		return p->lchild;
+}
+
+ThreadNode_T* FirstNode(ThreadNode_T* p) {
+	while (p->ltag == 0)
+		p = p->lchild;
+	return p; // 找到最左下结点 即第一个被中序遍历的结点
+}
+// 后序线索二叉树找后继
+ThreadNode_T* PostOrderNext(ThreadNode_T* p) {
+	ThreadNode_T* parent = p->parent;
+	// p为根节点，没有父母结点，直接返回空
+	if (parent == NULL)
+		return NULL;
+	// p是父节点右孩子 或 p是父节点左孩子，且父节点没有右孩子
+	// 都是直接返回父节点
+	if (p == parent->rchild ||(p == parent->lchild && parent->rtag == 1))
+		return parent;
+	// p是父节点左孩子，父节点有右孩子，返回父节点右孩子的最左下第一个结点
+	if (p == parent->lchild && parent->rtag == 0) {
+		return FirstNode(parent->rchild);
+	}
+
+	return NULL;
 }
