@@ -125,17 +125,17 @@
   <ItemGroup>
     <ClCompile Include="01-Linear-List\LinkList.cpp" />
     <ClCompile Include="01-Linear-List\SeqList.cpp" />
-    <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="02-Stack-Queue\Queue.cpp" />
+    <ClCompile Include="02-Stack-Queue\Stack.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="BiTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="01-Linear-List\LinkList.h" />
     <ClInclude Include="01-Linear-List\SeqList.h" />
+    <ClInclude Include="02-Stack-Queue\Queue.h" />
+    <ClInclude Include="02-Stack-Queue\Stack.h" />
     <ClInclude Include="BiTree.h" />
-    <ClInclude Include="Queue.h" />
-    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

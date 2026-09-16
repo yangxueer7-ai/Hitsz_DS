@@ -18,29 +18,23 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="BiTree.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="01-Linear-List\LinkList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="01-Linear-List\SeqList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="02-Stack-Queue\Queue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="02-Stack-Queue\Stack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="01-Linear-List\LinkList.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="BiTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -48,6 +42,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="01-Linear-List\SeqList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="02-Stack-Queue\Queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="02-Stack-Queue\Stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
