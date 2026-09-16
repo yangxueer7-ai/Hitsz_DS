@@ -127,8 +127,8 @@
     <ClCompile Include="01-Linear-List\SeqList.cpp" />
     <ClCompile Include="02-Stack-Queue\Queue.cpp" />
     <ClCompile Include="02-Stack-Queue\Stack.cpp" />
+    <ClCompile Include="03-Tree\BiTree.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="BiTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="01-Linear-List\LinkList.h" />

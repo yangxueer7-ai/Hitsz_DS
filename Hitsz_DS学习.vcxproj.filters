@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BiTree.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="01-Linear-List\SeqList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -31,6 +28,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="01-Linear-List\LinkList.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="03-Tree\BiTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
