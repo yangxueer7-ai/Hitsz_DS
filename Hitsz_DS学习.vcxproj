@@ -129,6 +129,7 @@
     <ClCompile Include="Experiment 2-1.cpp" />
     <ClCompile Include="Experiment 2-2.cpp" />
     <ClCompile Include="Experiment 2-3.cpp" />
+    <ClCompile Include="Experiment 3-1.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="SeqList.cpp" />
     <ClCompile Include="LinkList.cpp" />
