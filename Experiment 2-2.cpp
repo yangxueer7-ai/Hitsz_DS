@@ -19,6 +19,7 @@
 则该结点为“镜像核”，计数加一。
 递归统计所有结点后，输出镜像核结点总数。
 */
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <stdlib.h>

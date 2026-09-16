@@ -5,6 +5,7 @@
     队列的特性是先进先出
     所有元素入队完再依次出队，就构成了从小到大的有序序列
 */
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #define MAXSIZE 1000
 

@@ -123,25 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Experiment 1-1.cpp" />
-    <ClCompile Include="Experiment 1-2.cpp" />
-    <ClCompile Include="Experiment 1-3.cpp" />
-    <ClCompile Include="Experiment 2-1.cpp" />
-    <ClCompile Include="Experiment 2-2.cpp" />
-    <ClCompile Include="Experiment 2-3.cpp" />
-    <ClCompile Include="Experiment 3-1.cpp" />
+    <ClCompile Include="01-Linear-List\LinkList.cpp" />
+    <ClCompile Include="01-Linear-List\SeqList.cpp" />
     <ClCompile Include="Queue.cpp" />
-    <ClCompile Include="SeqList.cpp" />
-    <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="BiTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="01-Linear-List\LinkList.h" />
+    <ClInclude Include="01-Linear-List\SeqList.h" />
     <ClInclude Include="BiTree.h" />
-    <ClInclude Include="LinkList.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="SeqList.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

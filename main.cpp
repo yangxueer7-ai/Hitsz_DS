@@ -1,9 +1,10 @@
-#include "SeqList.h"
+#include "01-Linear-List/SeqList.h"
 int main()
 {
 	SeqList L;
 	InitList(L);
 	ListInsert(L, 1, 10);
+}
 //	ListInsert(L, 2, 20);
 //	ListInsert(L, 3, 30);
 //	std::cout << "当前长度: " << L.length

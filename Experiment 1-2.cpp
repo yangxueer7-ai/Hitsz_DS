@@ -8,6 +8,7 @@
     最终输出正面朝上的纸牌编号及数量，
     通过本题掌握顺序表的使用和状态模拟的方法。
 */
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <stdlib.h>
